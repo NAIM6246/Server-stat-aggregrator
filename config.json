@@ -13,7 +13,7 @@
         }
     ],
     "user" : {
-        "accessID" : 1,
-        "password" : "password"
+        "accessID" : "1",
+        "password": "password"
     }
 }
