@@ -1,0 +1,12 @@
+{
+    "listenPort" : 8000,
+    "vms": [
+        {
+            "name" : "vm1",
+            "id" : 1,
+            "host": "localhost",
+            "ip" : "asdasdf",
+            "port" : 8080
+        }
+    ]
+}
