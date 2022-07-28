@@ -7,8 +7,8 @@ import (
 	"net/http"
 
 	"github.com/go-chi/chi/v5"
-	"github.com/naim6246/aggregrator/configs"
-	"github.com/naim6246/aggregrator/models"
+	"github.com/naim6246/Server-stat-aggregrator/configs"
+	"github.com/naim6246/Server-stat-aggregrator/models"
 )
 
 func main() {

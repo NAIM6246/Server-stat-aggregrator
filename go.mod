@@ -1,4 +1,4 @@
-module github.com/naim6246/aggregrator
+module github.com/naim6246/Server-stat-aggregrator
 
 go 1.18
 
