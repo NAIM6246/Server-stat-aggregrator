@@ -5,11 +5,16 @@ import (
 	"fmt"
 	"os"
 	"sync"
+
+	"github.com/naim6246/Server-stat-aggregrator/models"
 )
 
 type AppConfig struct {
-	ListenPort int         `json:"listenPort"`
-	VMs        []*VMConfig `json:"vms"`
+	ListenPort     int          `json:"listenPort"`
+	Secret         string       `json:"secret"`
+	AccesInTTLHour int          `json:"accessTTLInHour"`
+	VMs            []*VMConfig  `json:"vms"`
+	User           *models.User `json:"user"`
 }
 
 const path = "/config.json"

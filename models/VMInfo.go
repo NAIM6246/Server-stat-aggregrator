@@ -2,7 +2,13 @@ package models
 
 type VMInfo struct {
 	Name   string  `json:"name"`
+	Serial int     `json:"serial"`
 	VMStat *VMStat `json:"vmStat"`
+}
+
+type VMDto struct {
+	Name   string `json:"name"`
+	Serial int    `json:"serial"`
 }
 
 type VMStat struct {
