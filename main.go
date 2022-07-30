@@ -85,12 +85,34 @@ func HandleRequest(router chi.Router, config *configs.AppConfig) {
 				Serial: vm.Serial,
 			}
 
-			resp, err := http.Get(fmt.Sprintf("http://%s:%d/server-stat", vm.Host, vm.Port))
+			resp, err := http.Get(fmt.Sprintf("http://%s:%d/current-server-stat", vm.Host, vm.Port))
 			if err != nil {
 				log.Fatalln(err)
 			}
 			json.NewDecoder(resp.Body).Decode(&vmInfo.VMStat)
 			response.VMs = append(response.VMs, vmInfo)
+		}
+		w.Header().Add("Cotent-Type", "application/json")
+		w.WriteHeader(http.StatusAccepted)
+		json.NewEncoder(w).Encode(response)
+	})
+
+	router.With(auth.Authenticate).Get("/logged-stats", func(w http.ResponseWriter, r *http.Request) {
+		response := make([]*models.LoggedServerStatsResponse, 0)
+
+		for _, vm := range config.VMs {
+			loggedStats := &models.LoggedServerStatsResponse{
+				Name:   vm.Name,
+				Serial: vm.Serial,
+				// VMStats: []*models.VMStat{},
+			}
+
+			resp, err := http.Get(fmt.Sprintf("http://%s:%d/server-stats", vm.Host, vm.Port))
+			if err != nil {
+				log.Fatalln(err)
+			}
+			json.NewDecoder(resp.Body).Decode(&loggedStats.VMStats)
+			response = append(response, loggedStats)
 		}
 		w.Header().Add("Cotent-Type", "application/json")
 		w.WriteHeader(http.StatusAccepted)
